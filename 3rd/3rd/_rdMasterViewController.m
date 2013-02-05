@@ -8,7 +8,6 @@
 
 #import "_rdMasterViewController.h"
 
-#import "_rdDetailViewController.h"
 #import "TaskDataController.h"
 #import "NewTask.h"
 #import "AddDataController.h"
@@ -125,6 +124,26 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary* attributes = @{
+NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle]
+    };
+    
+    NSAttributedString* attrText = [[NSAttributedString alloc] initWithString:[[self dataController].masterTaskList[indexPath.row] name] attributes:attributes];
+    NSString *CellIdentifier = @"TaskCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.textLabel.attributedText = attrText;
+    [self.tableView reloadData];
+    /*
+     *detailViewController = [[ alloc] initWithNibName:@"" bundle:nil];
+     // ...
+     // Pass the selected object to the new view controller.
+     [self.navigationController pushViewController:detailViewController animated:YES];
+     */
+}
+
+
 
 /*
 // Override to support rearranging the table view.
@@ -142,6 +161,7 @@
 }
 */
 
+/*
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
@@ -149,5 +169,5 @@
         detailController.detailItem = [self.dataController objectInListAtIndex:[self.tableView indexPathForSelectedRow].row];
     }
 }
-
+*/
 @end

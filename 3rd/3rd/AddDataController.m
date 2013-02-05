@@ -22,15 +22,17 @@
             NewTask *newtask;
             newtask = [[NewTask alloc] initWithName:self.taskInput.text];
             self.task = newtask;
-            TaskDataController *dataController = [[TaskDataController alloc] init];
-            [dataController addNewTask:newtask];
+            //TaskDataController *dataController = [[TaskDataController alloc] init];
+            //[dataController addNewTask:newtask];
         }
+        
     }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     if(textField == self.taskInput){
         [textField resignFirstResponder];
+        [self performSegueWithIdentifier:@"ReturnInput" sender:self];
     }
     return YES;
 }

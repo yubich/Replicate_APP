@@ -18,7 +18,6 @@
 		52B79D8B16B9F9A500CC77BC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 52B79D8A16B9F9A500CC77BC /* Default-568h@2x.png */; };
 		52B79D8E16B9F9A500CC77BC /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52B79D8C16B9F9A500CC77BC /* MainStoryboard.storyboard */; };
 		52B79D9116B9F9A500CC77BC /* _rdMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B79D9016B9F9A500CC77BC /* _rdMasterViewController.m */; };
-		52B79D9416B9F9A500CC77BC /* _rdDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52B79D9316B9F9A500CC77BC /* _rdDetailViewController.m */; };
 		52B79D9C16B9F9A600CC77BC /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B79D9B16B9F9A600CC77BC /* SenTestingKit.framework */; };
 		52B79D9D16B9F9A600CC77BC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B79D7416B9F9A400CC77BC /* UIKit.framework */; };
 		52B79D9E16B9F9A600CC77BC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52B79D7616B9F9A400CC77BC /* Foundation.framework */; };
@@ -56,8 +55,6 @@
 		52B79D8D16B9F9A500CC77BC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		52B79D8F16B9F9A500CC77BC /* _rdMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _rdMasterViewController.h; sourceTree = "<group>"; };
 		52B79D9016B9F9A500CC77BC /* _rdMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _rdMasterViewController.m; sourceTree = "<group>"; };
-		52B79D9216B9F9A500CC77BC /* _rdDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = _rdDetailViewController.h; sourceTree = "<group>"; };
-		52B79D9316B9F9A500CC77BC /* _rdDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _rdDetailViewController.m; sourceTree = "<group>"; };
 		52B79D9A16B9F9A600CC77BC /* 3rdTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 3rdTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52B79D9B16B9F9A600CC77BC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		52B79DA316B9F9A600CC77BC /* 3rdTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "3rdTests-Info.plist"; sourceTree = "<group>"; };
@@ -140,8 +137,6 @@
 				52B79DC616BA174900CC77BC /* TaskDataController.m */,
 				52B79D8F16B9F9A500CC77BC /* _rdMasterViewController.h */,
 				52B79D9016B9F9A500CC77BC /* _rdMasterViewController.m */,
-				52B79D9216B9F9A500CC77BC /* _rdDetailViewController.h */,
-				52B79D9316B9F9A500CC77BC /* _rdDetailViewController.m */,
 				52B79D7B16B9F9A400CC77BC /* Supporting Files */,
 			);
 			path = 3rd;
@@ -294,7 +289,6 @@
 				52B79D8116B9F9A400CC77BC /* main.m in Sources */,
 				52B79D8516B9F9A500CC77BC /* _rdAppDelegate.m in Sources */,
 				52B79D9116B9F9A500CC77BC /* _rdMasterViewController.m in Sources */,
-				52B79D9416B9F9A500CC77BC /* _rdDetailViewController.m in Sources */,
 				52B79DC416BA151400CC77BC /* NewTask.m in Sources */,
 				52B79DC716BA174900CC77BC /* TaskDataController.m in Sources */,
 				52B79DD316BA2FD500CC77BC /* AddDataController.m in Sources */,
