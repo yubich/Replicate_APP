@@ -10,6 +10,8 @@
 
 @interface NewTask : UITableViewController
 @property (nonatomic,copy)NSString *name;
+@property (nonatomic)BOOL complete;
 -(id)initWithName:(NSString *)name;
-
+-(id)initWithComplete:(BOOL) complete;
+-(void)setComplete:(BOOL) complete;
 @end

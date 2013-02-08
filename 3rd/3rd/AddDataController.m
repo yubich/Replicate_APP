@@ -20,10 +20,12 @@
     if([[segue identifier] isEqualToString:@"ReturnInput"]){
         if ([self.taskInput.text length]) {
             NewTask *newtask;
-            newtask = [[NewTask alloc] initWithName:self.taskInput.text];
+            //NSDictionary* attributes = @{NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle]};
+            //NSAttributedString* attrText = [[NSAttributedString alloc] initWithString:[self.taskInput.text attributes:attributes];
+            newtask = [[NewTask alloc] initWithName:self.taskInput.text ];
+            newtask = [newtask initWithComplete:NO];
             self.task = newtask;
-            //TaskDataController *dataController = [[TaskDataController alloc] init];
-            //[dataController addNewTask:newtask];
+            
         }
         
     }

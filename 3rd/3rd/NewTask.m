@@ -15,6 +15,21 @@
 
 @implementation NewTask
 
+-(void)setComplete:(BOOL)complete
+{
+    _complete = complete;
+}
+
+-(id)initWithComplete:(BOOL)complete
+{
+    self = [super init];
+    if(self){
+        _complete = complete;
+        return self;
+    }
+    return nil;
+}
+
 - (id)initWithName:(NSString *)name
 {
     self = [super init];

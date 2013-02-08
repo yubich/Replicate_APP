@@ -54,7 +54,6 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="To6-qq-M3a" id="Q4U-5M-Mll"/>
-                                                        <segue destination="gD9-2Z-Npi" kind="unwind" identifier="returnInput" unwindAction="done:" id="8pV-pR-lmz"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -162,6 +161,27 @@
             <point key="canvasLocation" x="459" y="-593"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="AddDataController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddDataController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="taskInput" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="UIStoryboardSegue" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIStoryboardSegue.h"/>
+        </class>
+        <class className="_rdMasterViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/_rdMasterViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancle:" candidateClass="UIStoryboardSegue"/>
+                <relationship kind="action" name="done:" candidateClass="UIStoryboardSegue"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

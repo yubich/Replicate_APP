@@ -51,7 +51,27 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
+    
+    
+    NSLog(@"View did load");
+    UIApplication *app = [UIApplication sharedApplication];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackground:) name:UIApplicationDidEnterBackgroundNotification object:app];
+    
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    // paths[0];
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *plistPath = [documentsDirectory stringByAppendingPathComponent:@"data.plist"];
+    
+    if ([fileManager fileExistsAtPath:plistPath] == YES)
+    {
+        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:plistPath];
+        //[self dataController].masterTaskList = [dict objectForKey:@"text"];
+        NSLog(@"%@",[self dataController].masterTaskList);
+     
+        //[self.tableView reloadData];
+    }
     /*
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
@@ -62,6 +82,19 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)applicationDidEnterBackground:(NSNotification *)notification {
+    NSLog(@"Entering Background");
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    // paths[0];
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *plistPath = [documentsDirectory stringByAppendingPathComponent:@"data.plist"];
+    
+    NSMutableArray *temp = [self dataController].masterTaskList;
+    NSLog(@"%@",temp);
+    [[NSDictionary dictionaryWithObject:temp forKey:@"text"] writeToFile:plistPath atomically:YES];
 }
 
 /*
@@ -90,6 +123,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"cell for at index path");
     static NSString *CellIdentifier = @"TaskCell";
     
     static NSDateFormatter *formatter = nil;
@@ -99,11 +133,29 @@
     }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
+    NSLog(@"%@", cell);
     NewTask *sightingAtIndex = [self.dataController objectInListAtIndex:indexPath.row];
-    [[cell textLabel] setText:sightingAtIndex.name];
-    [[cell detailTextLabel] setText:@"."];
-    return cell;
+    
+    // generate the cell under two different contidtions
+    if ([[self dataController].masterTaskList[indexPath.row] complete] == NO) {
+        [[cell textLabel] setText:sightingAtIndex.name];
+        [[cell detailTextLabel] setText:@"."];
+        cell.textLabel.textColor = [UIColor blackColor];
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
+    else{
+        
+        NSDictionary* attributes = @{
+    NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle]
+        };
+        
+        NSAttributedString* attrText = [[NSAttributedString alloc] initWithString:[[self dataController].masterTaskList[indexPath.row] name] attributes:attributes];
+        [[cell textLabel] setAttributedText:attrText];
+        cell.textLabel.textColor = [UIColor redColor];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    return cell;
+}
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -126,15 +178,32 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary* attributes = @{
-NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingle]
-    };
+    NSLog(@"Row selected");
     
-    NSAttributedString* attrText = [[NSAttributedString alloc] initWithString:[[self dataController].masterTaskList[indexPath.row] name] attributes:attributes];
-    NSString *CellIdentifier = @"TaskCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    cell.textLabel.attributedText = attrText;
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSLog(@"%@", cell);
+    if([[self dataController].masterTaskList[indexPath.row] complete] == NO)
+    {
+        [self.dataController.masterTaskList[indexPath.row] setComplete:YES];
+    }
+    else
+    {
+        [self.dataController.masterTaskList[indexPath.row] setComplete:NO];
+    }
+    
     [self.tableView reloadData];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+
+    //[[cell textLabel] setAttributedText:attrText];
+     
+    //NSString *CellIdentifier = @"TaskCell";
+    
+
+    
+    //[self.tableView cellForRowAtIndexPath:indexPath];
+    //NSLog(attrText);
+    //[self.tableView reloadData];
+    //[self viewDidLoad] ;
     /*
      *detailViewController = [[ alloc] initWithNibName:@"" bundle:nil];
      // ...
@@ -142,7 +211,6 @@ NSStrikethroughStyleAttributeName: [NSNumber numberWithInt:NSUnderlineStyleSingl
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
 }
-
 
 
 /*
